@@ -1,0 +1,28 @@
+name: Build Project
+
+on:
+  push:
+    branches:
+      - main  # Запуск пайплайна при пуші в гілку main
+  pull_request:
+    branches:
+      - main  # Запуск пайплайна при створенні PR на main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Використовуємо останній образ Ubuntu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Завантажуємо код з репозиторію
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x  # Підставте вашу версію .NET
+
+      - name: Restore dependencies
+        run: dotnet restore  # Завантажуємо залежності
+
+      - name: Build project
+        run: dotnet build --configuration Release  # Компільовуємо проєкт
