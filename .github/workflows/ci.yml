@@ -3,10 +3,10 @@ name: Build Project
 on:
   push:
     branches:
-      - main  # Запуск пайплайна при пуші в гілку main
+      - master  # Запуск пайплайна при пуші в гілку main
   pull_request:
     branches:
-      - main  # Запуск пайплайна при створенні PR на main
+      - master  # Запуск пайплайна при створенні PR на main
 
 jobs:
   build:
