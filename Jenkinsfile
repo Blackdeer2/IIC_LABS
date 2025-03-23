@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', 
-                    credentialsId: '12345-abcde-67890', 
+                git branch: 'vysotskyi', 
+                    credentialsId: '1d979e6a-db5a-41c1-99a4-5583779412b6', 
                     url: 'https://github.com/Blackdeer2/IIC_LABS.git'
             }
         }
