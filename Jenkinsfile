@@ -1,20 +1,47 @@
 pipeline {
     agent any
+    
+    environment {
+        GITHUB_URL = 'https://github.com/Blackdeer2/IIC_LABS.git'
+    }
+    
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                git branch: 'vysotskyi', 
-                    credentialsId: '1d979e6a-db5a-41c1-99a4-5583779412b6', 
-                    url: 'https://github.com/Blackdeer2/IIC_LABS.git'
+                git url: env.GITHUB_URL, branch: env.GITHUB_BRANCH
             }
         }
-        stage('Build') {
+        
+        stage('Update System') {
             steps {
-                sh 'npm install'
-                sh 'npm run build'
-
+                script {
+                    sh 'sudo apt update && sudo apt upgrade -y'
+                }
+            }
+        }
+        
+        stage('Install Node.js and NPM') {
+            steps {
+                script {
+                    sh 'sudo apt install -y nodejs npm'
+                }
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    sh 'npm install'
+                }
+            }
+        }
+        
+        stage('Run Dev Server') {
+            steps {
+                script {
+                    sh 'npm run build'
+                }
             }
         }
     }
 }
-
