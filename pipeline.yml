@@ -1,0 +1,27 @@
+# name: My GitHub Actions Pipeline
+
+# on:
+#   push:
+#     branches: [ vysotskyi ]
+#   pull_request:
+#     branches: [ vysotskyi ]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v3
+
+#     - name: Update System
+#       run: sudo apt update && sudo apt upgrade -y
+
+#     - name: Install Node.js and NPM
+#       run: sudo apt install -y nodejs npm
+
+#     - name: Install Dependencies
+#       run: npm install
+
+#     - name: Build Project
+#       run: npm run build

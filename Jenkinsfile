@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: env.GITHUB_URL, branch: env.GITHUB_BRANCH
+                git branch: 'vysotskyi', url: 'https://github.com/Blackdeer2/IIC_LABS.git'
             }
         }
         

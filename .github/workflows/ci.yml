@@ -1,28 +1,27 @@
-name: Build Project
+name: My GitHub Actions Pipeline
 
 on:
   push:
-    branches:
-      - master  # Запуск пайплайна при пуші в гілку main
+    branches: [ vysotskyi ]
   pull_request:
-    branches:
-      - master  # Запуск пайплайна при створенні PR на main
+    branches: [ vysotskyi ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Використовуємо останній образ Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3  # Завантажуємо код з репозиторію
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 7.0.x  # Підставте вашу версію .NET
+    - name: Update System
+      run: sudo apt update && sudo apt upgrade -y
 
-      - name: Restore dependencies
-        run: dotnet restore  # Завантажуємо залежності
+    - name: Install Node.js and NPM
+      run: sudo apt install -y nodejs npm
 
-      - name: Build project
-        run: dotnet build --configuration Release  # Компільовуємо проєкт
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build Project
+      run: npm run build
